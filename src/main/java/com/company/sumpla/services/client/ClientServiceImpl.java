@@ -1,4 +1,4 @@
-package com.company.sumpla.services;
+package com.company.sumpla.services.client;
 
 import com.company.sumpla.exceptions.NotFoundException;
 import com.company.sumpla.model.Client;
