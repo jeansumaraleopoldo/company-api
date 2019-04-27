@@ -4,12 +4,16 @@ import com.company.sumpla.model.BaseBuilder;
 import com.company.sumpla.model.Client;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
-public class ClientDto {
+public class ClientDto implements Serializable {
+
+    private static final Long serialVersionUID = 1L;
 
     private Long id;
     private String name;
-    private Integer cpf;
+    private Long cpf;
 
     public Long getId() {
         return id;
@@ -27,11 +31,11 @@ public class ClientDto {
         this.name = name;
     }
 
-    public Integer getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    private void setCpf(Integer cpf) {
+    private void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
@@ -61,7 +65,7 @@ public class ClientDto {
             return this;
         }
 
-        public Builder cpf(Integer cpf){
+        public Builder cpf(Long cpf){
             this.entity.setCpf(cpf);
             return this;
         }

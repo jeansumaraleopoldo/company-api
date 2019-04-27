@@ -1,18 +1,18 @@
 package com.company.sumpla.model;
 
-import org.springframework.data.annotation.Id;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import java.io.Serializable;
+import javax.persistence.Id;
 
-public class Client implements Serializable {
+@Entity
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Integer cpf;
+    private Long cpf;
 
     public Long getId() {
         return id;
@@ -26,11 +26,11 @@ public class Client implements Serializable {
         this.name = name;
     }
 
-    public Integer getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    private void setCpf(Integer cpf) {
+    private void setCpf(Long cpf) {
         this.cpf = cpf;
     }
 
@@ -55,7 +55,7 @@ public class Client implements Serializable {
             return this;
         }
 
-        public Builder cpf(Integer cpf) {
+        public Builder cpf(Long cpf) {
             this.entity.setCpf(cpf);
             return this;
         }
