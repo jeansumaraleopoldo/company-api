@@ -1,8 +1,16 @@
 package com.company.sumpla.controllers;
 import com.company.sumpla.dtos.ClientDto;
+import com.company.sumpla.model.Client;
 import com.company.sumpla.services.ClientService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class ClientController {
@@ -17,10 +25,13 @@ public class ClientController {
 
     @GetMapping("clients")
     public ResponseEntity getClients(){
-        return ResponseEntity.ok("Show");
+        List<ClientDto> clients = clientService.getClients().stream()
+                .map(clientRB::toRepresentation)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(clients);
     }
 
-    /*@GetMapping("clients/{id}")
+    @GetMapping("clients/{id}")
     public ResponseEntity<ClientDto> getClientById(@PathVariable Long id) {
         Client client = clientService.findById(id);
         ClientDto clientDto = clientRB.toRepresentation(client);
@@ -43,9 +54,9 @@ public class ClientController {
     }
 
     @PutMapping("clients/{id}")
-    public ResponseEntity<ClientDto> updateClient(@PathVariable Long id, ClientDto representation) {
-        Client product = clientService.findById(id);
-        Client.Builder builder = Client.Builder.from(product);
+    public ResponseEntity<ClientDto> updateClient(@PathVariable Long id, @RequestBody ClientDto representation) {
+        Client client = clientService.findById(id);
+        Client.Builder builder = Client.Builder.from(client);
         Client fromRepresentation = clientRB.fromRepresentation(representation, builder);
         Client savedClient = clientService.saveClient(fromRepresentation);
         ClientDto clientDto = clientRB.toRepresentation(savedClient);
@@ -56,5 +67,5 @@ public class ClientController {
     public ResponseEntity deleteById(@PathVariable Long id) {
         clientService.deleteById(id);
         return ResponseEntity.noContent().build();
-    }*/
+    }
 }
