@@ -1,7 +1,7 @@
 package com.company.sumpla.controllers;
 import com.company.sumpla.dtos.ClientDto;
 import com.company.sumpla.model.Client;
-import com.company.sumpla.services.ClientService;
+import com.company.sumpla.services.client.ClientService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
