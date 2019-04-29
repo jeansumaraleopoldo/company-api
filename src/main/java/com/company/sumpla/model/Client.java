@@ -1,17 +1,20 @@
 package com.company.sumpla.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "CLIENTS")
 public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Long id;
+
+    @Column(name = "NAME")
     private String name;
+
+    @Column(name = "CPF")
     private Long cpf;
 
     public Long getId() {
